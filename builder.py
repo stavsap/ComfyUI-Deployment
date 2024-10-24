@@ -308,13 +308,10 @@ for url, file_name, path in downloads:
 
 def get_windows_pip_run_file():
     return '''@echo off
-
 cd ComfyUI
-
 call venv\\Scripts\\activate.bat
-
 python main.py --windows-standalone-build --listen
-    '''
+'''
 
 def get_windows_conda_run_file():
     return '''@echo off
@@ -372,7 +369,7 @@ if __name__ == "__main__":
     arguments = sys.argv[1:]
 
     if len(arguments) != 1:
-        print("wrong arguments")
+        print("wrong arguments, should get only 1 argument, the path to yaml config file.")
         exit(137)
 
     config = load_config(arguments[0])
