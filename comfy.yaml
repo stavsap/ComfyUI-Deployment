@@ -1,0 +1,321 @@
+install_type: conda
+platform: windows
+requirements:
+  - 'torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu124'
+  - 'huggingface_hub opencv-python insightface onnxruntime onnxruntime-gpu simpleeval'
+
+nodes:
+  - repo: https://github.com/ltdrdata/ComfyUI-Manager
+  - repo: https://github.com/pythongosssss/ComfyUI-Custom-Scripts
+  - repo: https://github.com/cubiq/ComfyUI_IPAdapter_plus
+    assets:
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sd15.safetensors?download=true
+        file_name: ip-adapter_sd15.safetensors
+        location: ./models/ipadapter/
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sd15_light.safetensors?download=true
+        file_name: ip-adapter_sd15_light.safetensors
+        location: ./models/ipadapter/
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus_sd15.safetensors?download=true
+        file_name: ip-adapter-plus_sd15.safetensors
+        location: ./models/ipadapter/
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus-face_sd15.safetensors?download=true
+        file_name: ip-adapter-plus-face_sd15.safetensors
+        location: ./models/ipadapter/
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-full-face_sd15.safetensors?download=true
+        file_name: ip-adapter-full-face_sd15.safetensors
+        location: ./models/ipadapter/
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sd15_vit-G.safetensors?download=true
+        file_name: ip-adapter_sd15_vit-G.safetensors
+        location: ./models/ipadapter/
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sdxl.safetensors?download=true
+        file_name: ip-adapter_sdxl.safetensors
+        location: ./models/ipadapter/
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sdxl_vit-h.safetensors?download=true
+        file_name: ip-adapter_sdxl_vit-h.safetensors
+        location: ./models/ipadapter/
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus_sdxl_vit-h.safetensors?download=true
+        file_name: ip-adapter-plus_sdxl_vit-h.safetensors
+        location: ./models/ipadapter/
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter-plus-face_sdxl_vit-h.safetensors?download=true
+        file_name: ip-adapter-plus-face_sdxl_vit-h.safetensors
+        location: ./models/ipadapter/
+  - repo: https://github.com/cubiq/ComfyUI_InstantID
+    assets:
+      - url: https://huggingface.co/InstantX/InstantID/resolve/main/ip-adapter.bin?download=true
+        file_name: ip-adapter.bin
+        location: ./models/instantid/
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/models/image_encoder/model.safetensors?download=true
+        file_name: CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors
+        location: ./models/clip_vision/
+      - url: https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/image_encoder/model.safetensors?download=true
+        file_name: CLIP-ViT-bigG-14-laion2B-39B-b160k.safetensors
+        location: ./models/clip_vision/
+      - url: https://huggingface.co/h94/IP-Adapter-FaceID/resolve/main/ip-adapter-faceid_sd15.bin?download=true
+        file_name: ip-adapter-faceid_sd15.bin
+        location: ./models/loras/
+      - url: https://huggingface.co/h94/IP-Adapter-FaceID/resolve/main/ip-adapter-faceid-plus_sd15.bin?download=true
+        file_name: ip-adapter-faceid-plus_sd15.bin
+        location: ./models/loras/
+      - url: https://huggingface.co/h94/IP-Adapter-FaceID/resolve/main/ip-adapter-faceid-plusv2_sd15.bin?download=true
+        file_name: ip-adapter-faceid-plusv2_sd15.bin
+        location: ./models/loras/
+      - url: https://huggingface.co/h94/IP-Adapter-FaceID/resolve/main/ip-adapter-faceid-portrait_sd15.bin?download=true
+        file_name: ip-adapter-faceid-portrait_sd15.bin
+        location: ./models/loras/
+      - url: https://huggingface.co/h94/IP-Adapter-FaceID/resolve/main/ip-adapter-faceid_sdxl.bin?download=true
+        file_name: ip-adapter-faceid_sdxl.bin
+        location: ./models/loras/
+      - url: https://huggingface.co/h94/IP-Adapter-FaceID/resolve/main/ip-adapter-faceid-plusv2_sdxl.bin?download=true
+        file_name: ip-adapter-plusv2_sdxl.bin
+        location: ./models/loras/
+      - url: https://github.com/sczhou/CodeFormer/releases/download/v0.1.0/codeformer.pth
+        file_name: codeformer.pth
+        location: ./models/facerestore_models/
+      - url: https://github.com/TencentARC/GFPGAN/releases/download/v1.3.4/GFPGANv1.4.pth
+        file_name: GFPGANv1.4.pth
+        location: ./models/facerestore_models/
+  - repo: https://github.com/cubiq/ComfyUI_essentials
+  - repo: https://github.com/Ttl/ComfyUi_NNLatentUpscale
+  - repo: https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved
+    assets:
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/mm_sd_v14.ckpt?download=true
+        file_name: mm_sd_v14.ckpt
+        location: ./models/animatediff_models/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/mm_sd_v15.ckpt?download=true
+        file_name: mm_sd_v15.ckpt
+        location: ./models/animatediff_models/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/mm_sd_v15_v2.ckpt?download=true
+        file_name: mm_sd_v15_v2.ckpt
+        location: ./models/animatediff_models/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/mm_sdxl_v10_beta.ckpt?download=true
+        file_name: mm_sdxl_v10_beta.ckpt
+        location: ./models/animatediff_models/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v2_lora_PanLeft.ckpt?download=true
+        file_name: v2_lora_PanLeft.ckpt
+        location: ./models/animatediff_motion_lora/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v2_lora_PanRight.ckpt?download=true
+        file_name: v2_lora_PanRight.ckpt
+        location: ./models/animatediff_motion_lora/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v2_lora_RollingAnticlockwise.ckpt?download=true
+        file_name: v2_lora_RollingAnticlockwise.ckpt
+        location: ./models/animatediff_motion_lora/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v2_lora_RollingClockwise.ckpt?download=true
+        file_name: v2_lora_RollingClockwise.ckpt
+        location: ./models/animatediff_motion_lora/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v2_lora_TiltDown.ckpt?download=true
+        file_name: v2_lora_TiltDown.ckpt
+        location: ./models/animatediff_motion_lora/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v2_lora_TiltUp.ckpt?download=true
+        file_name: v2_lora_TiltUp.ckpt
+        location: ./models/animatediff_motion_lora/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v2_lora_ZoomIn.ckpt?download=true
+        file_name: v2_lora_ZoomIn.ckpt
+        location: ./models/animatediff_motion_lora/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v2_lora_ZoomOut.ckpt?download=true
+        file_name: v2_lora_ZoomOut.ckpt
+        location: ./models/animatediff_motion_lora/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v3_sd15_adapter.ckpt?download=true
+        file_name: v3_sd15_adapter.ckpt
+        location: ./models/animatediff_models/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v3_sd15_mm.ckpt?download=true
+        file_name: v3_sd15_mm.ckpt
+        location: ./models/animatediff_models/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v3_sd15_sparsectrl_rgb.ckpt?download=true
+        file_name: v3_sd15_sparsectrl_rgb.ckpt
+        location: ./models/animatediff_models/
+      - url: https://huggingface.co/guoyww/animatediff/resolve/cd71ae134a27ec6008b968d6419952b0c0494cf2/v3_sd15_sparsectrl_scribble.ckpt?download=true
+        file_name: v3_sd15_sparsectrl_scribble.ckpt
+        location: ./models/animatediff_models/
+  - repo: https://github.com/rgthree/rgthree-comfy
+  - repo: https://github.com/LEv145/images-grid-comfy-plugin
+  - repo: https://github.com/glowcone/comfyui-load-image-from-url
+  - repo: https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet
+    assets:
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11e_sd15_ip2p.pth
+        file_name: control_v11e_sd15_ip2p.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11e_sd15_ip2p.yaml
+        file_name: control_v11e_sd15_ip2p.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11e_sd15_shuffle.pth
+        file_name: control_v11e_sd15_shuffle.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11e_sd15_shuffle.yaml
+        file_name: control_v11e_sd15_shuffle.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1e_sd15_tile.pth
+        file_name: control_v11f1e_sd15_tile.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1e_sd15_tile.yaml
+        file_name: control_v11f1e_sd15_tile.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth
+        file_name: control_v11f1p_sd15_depth.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.yaml
+        file_name: control_v11f1p_sd15_depth.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_canny.pth
+        file_name: control_v11p_sd15_canny.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_canny.yaml
+        file_name: control_v11p_sd15_canny.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_inpaint.pth
+        file_name: control_v11p_sd15_inpaint.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_inpaint.yaml
+        file_name: control_v11p_sd15_inpaint.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_lineart.pth
+        file_name: control_v11p_sd15_lineart.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_lineart.yaml
+        file_name: control_v11p_sd15_lineart.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_mlsd.pth
+        file_name: control_v11p_sd15_mlsd.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_mlsd.yaml
+        file_name: control_v11p_sd15_mlsd.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_normalbae.pth
+        file_name: control_v11p_sd15_normalbae.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_normalbae.yaml
+        file_name: control_v11p_sd15_normalbae.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth
+        file_name: control_v11p_sd15_openpose.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.yaml
+        file_name: control_v11p_sd15_openpose.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_scribble.pth
+        file_name: control_v11p_sd15_scribble.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_scribble.yaml
+        file_name: control_v11p_sd15_scribble.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_seg.pth
+        file_name: control_v11p_sd15_seg.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_seg.yaml
+        file_name: control_v11p_sd15_seg.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_softedge.pth
+        file_name: control_v11p_sd15_softedge.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_softedge.yaml
+        file_name: control_v11p_sd15_softedge.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15s2_lineart_anime.pth
+        file_name: control_v11p_sd15s2_lineart_anime.pth
+        location: ./models/controlnet/
+      - url: https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15s2_lineart_anime.yaml
+        file_name: control_v11p_sd15s2_lineart_anime.yaml
+        location: ./models/controlnet/
+      - url: https://huggingface.co/InstantX/InstantID/resolve/main/ControlNetModel/diffusion_pytorch_model.safetensors?download=true
+        file_name: diffusion_pytorch_model.safetensors
+        location: ./models/controlnet/
+  - repo: https://github.com/crystian/ComfyUI-Crystools
+    pip_install: true
+  - repo: https://github.com/jags111/efficiency-nodes-comfyui
+    pip_install: true
+  - repo: https://github.com/giriss/comfy-image-saver
+    pip_install: true
+  - repo: https://github.com/kijai/ComfyUI-SUPIR
+    pip_install: true
+    assets:
+      - url: https://huggingface.co/camenduru/SUPIR/resolve/main/SUPIR-v0F.ckpt?download=true
+        file_name: SUPIR-v0F.ckpt
+        location: ./models/checkpoints/supir/
+      - url: https://huggingface.co/camenduru/SUPIR/resolve/main/SUPIR-v0Q.ckpt?download=true
+        file_name: SUPIR-v0Q.ckpt
+        location: ./models/checkpoints/supir/
+  - repo: https://github.com/ltdrdata/ComfyUI-Inspire-Pack
+    pip_install: true
+  - repo: https://github.com/kijai/ComfyUI-Florence2
+    pip_install: true
+  - repo: https://github.com/Gourieff/comfyui-reactor-node
+    custom_script: | 
+      cd custom_nodes/comfyui-reactor-node
+      python install.py
+      cd ../..
+
+assets:
+  - url: https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors?download=true
+    file_name: sd_xl_base_1.0.safetensors
+    location: ./models/checkpoints/sdxl/
+  - url: https://huggingface.co/AIBrainBox/inswapper_128.onnx/resolve/main/inswapper_128.onnx?download=true
+    file_name: inswapper_128.onnx
+    location: ./models/insightface/models/
+  - url: https://huggingface.co/MonsterMMORPG/tools/resolve/main/antelopev2.zip?download=true
+    file_name: antelopev2.zip
+    location: ./models/insightface/models/
+  - url: https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/flux1-schnell.safetensors?download=true
+    file_name: flux1-schnell.safetensors
+    location: ./models/unet/
+  - url: https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors?download=true
+    file_name: flux1-dev.safetensors
+    location: ./models/unet/
+  - url: https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors?download=true
+    file_name: t5xxl_fp16.safetensors
+    location: ./models/clip/
+  - url: https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors?download=true
+    file_name: clip_l.safetensors
+    location: ./models/clip/
+  - url: https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors?download=true
+    file_name: t5xxl_fp8_e4m3fn.safetensors
+    location: ./models/clip/
+  - url: https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors?download=true
+    file_name: ae.safetensors
+    location: ./models/vae/
+  - url: https://huggingface.co/uwg/upscaler/resolve/main/ESRGAN/4x-UltraSharp.pth?download=true
+    file_name: 4x-UltraSharp.pth
+    location: ./models/upscale_models/
+  - url: https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors?download=true
+    file_name: sd_xl_base_1.0.safetensors
+    location: ./models/checkpoints/sdxl/
+  - url: https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors?download=true
+    file_name: sd_xl_refiner_1.0.safetensors
+    location: ./models/checkpoints/sdxl/
+  - url: https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors?download=true
+    file_name: sdxl_vae.safetensors
+    location: ./models/vae/
+  - url: https://huggingface.co/stabilityai/stable-cascade/resolve/main/comfyui_checkpoints/stable_cascade_stage_c.safetensors?download=true
+    file_name: stable_cascade_stage_c.safetensors
+    location: ./models/checkpoints/sd-cascade/
+  - url: https://huggingface.co/stabilityai/stable-cascade/resolve/main/comfyui_checkpoints/stable_cascade_stage_b.safetensors?download=true
+    file_name: stable_cascade_stage_b.safetensors
+    location: ./models/checkpoints/sd-cascade/
+  - url: https://huggingface.co/stabilityai/stable-cascade/resolve/main/stage_a.safetensors?download=true
+    file_name: stable_cascade_stage_a.safetensors
+    location: ./models/vae/
+  - url: https://huggingface.co/stabilityai/sdxl-turbo/resolve/main/sd_xl_turbo_1.0_fp16.safetensors?download=true
+    file_name: sd_xl_turbo_1.0_fp16.safetensors.safetensors
+    location: ./models/checkpoints/sdxl/
+  - url: https://huggingface.co/SG161222/RealVisXL_V3.0_Turbo/resolve/main/RealVisXL_V3.0_Turbo.safetensors?download=true
+    file_name: RealVisXL_V3.0_Turbo.safetensors
+    location: ./models/checkpoints/sdxl/
+  - url: https://huggingface.co/SG161222/RealVisXL_V4.0_Lightning/resolve/main/RealVisXL_V4.0_Lightning.safetensors?download=true
+    file_name: RealVisXL_V4.0_Lightning.safetensors
+    location: ./models/checkpoints/sdxl/
+  - url: https://huggingface.co/Lykon/dreamshaper-xl-v2-turbo/resolve/main/DreamShaperXL_Turbo_v2_1.safetensors?download=true
+    file_name: DreamShaperXL_Turbo_v2_1.safetensors
+    location: ./models/checkpoints/sdxl/
+  - url: https://huggingface.co/Lykon/dreamshaper-xl-lightning/resolve/main/DreamShaperXL_Lightning.safetensors?download=true
+    file_name: DreamShaperXL_Lightning.safetensors
+    location: ./models/checkpoints/sdxl/
+  - url: https://huggingface.co/RunDiffusion/Juggernaut-XL-v9/resolve/main/Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors?download=true
+    file_name: Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors
+    location: ./models/checkpoints/sdxl/
+  - url: https://huggingface.co/latent-consistency/lcm-lora-sdxl/resolve/main/pytorch_lora_weights.safetensors?download=true
+    file_name: LCM-lora-weights.safetensors
+    location: ./models/loras/
+
+custom_script: | 
+  cd models\insightface\models
+  tar -xf antelopev2.zip
+  del antelopev2.zip
+  cd ../../..
