@@ -351,29 +351,33 @@ def get_windows_node_script(node: Node):
 git clone {node.repo}.git custom_nodes/{name}\n{additional}'''
 
 def create_windows_conda(c: InstallConfig):
-    run_script = get_windows_conda_run_file()
-    install_script = ''
+    install_script = get_windows_conda_header(c)
 
-    if c.platform == "windows":
-        install_script = get_windows_conda_header(c)
-        for node in c.nodes:
-            install_script += get_windows_node_script(node)
+    for node in c.nodes:
+        install_script += get_windows_node_script(node)
 
     install_script += "\npython download.py\n\n"
     install_script += "del download.py\n"
     install_script += c.custom_script+"\n"
     install_script += "python main.py --windows-standalone-build --listen"
-    writer = FileWriter()
 
-    writer.write_string(run_script, "install/run.bat",create_dirs=True)
+    writer = FileWriter()
+    writer.write_string(get_windows_conda_run_file(), "install/run.bat",create_dirs=True)
     writer.write_string(install_script, "install/install.bat",create_dirs=True)
     writer.write_string(get_downloads(c), "install/download.py",create_dirs=True)
 
 if __name__ == "__main__":
+
     # Arguments start from index 1 (index 0 is the script name)
     arguments = sys.argv[1:]
+
     if len(arguments) != 1:
         print("wrong arguments")
         exit(137)
+
     config = load_config(arguments[0])
-    create_windows_conda(config)
+
+    if config.platform == "windows":
+        create_windows_conda(config)
+    else:
+        raise ValueError("Unsupported platform: " + config.platform)
