@@ -6,6 +6,13 @@ from typing import Union, List, Optional
 import logging
 from datetime import datetime
 
+"""Set up logging configuration"""
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger("deployment")
+
 class FileWriter:
     """Utility class for writing strings to files with various options"""
 
@@ -17,15 +24,7 @@ class FileWriter:
             default_encoding (str): Default encoding to use for file operations
         """
         self.default_encoding = default_encoding
-        self._setup_logging()
 
-    def _setup_logging(self):
-        """Set up logging configuration"""
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s'
-        )
-        self.logger = logging.getLogger(__name__)
 
     def write_string(
             self,
@@ -70,11 +69,11 @@ class FileWriter:
             ) as f:
                 f.write(content)
 
-            self.logger.info(f"Successfully wrote to file: {file_path}")
+            logger.info(f"Successfully wrote to file: {file_path}")
             return True
 
         except Exception as e:
-            self.logger.error(f"Error writing to file {filepath}: {str(e)}")
+            logger.error(f"Error writing to file {filepath}: {str(e)}")
             return False
 
     def write_lines(
@@ -142,10 +141,10 @@ class FileWriter:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             backup_path = file_path.parent / f"{file_path.stem}_{timestamp}{file_path.suffix}"
             os.replace(file_path, backup_path)
-            self.logger.info(f"Created backup: {backup_path}")
+            logger.info(f"Created backup: {backup_path}")
             return backup_path
         except Exception as e:
-            self.logger.error(f"Error creating backup: {str(e)}")
+            logger.error(f"Error creating backup: {str(e)}")
             return None
 
 @dataclass
@@ -247,7 +246,7 @@ class InstallConfig:
 
 
 def load_config(yaml_path: str) -> InstallConfig:
-    print("Loading file: "+yaml_path)
+    logger.info("Loading file: "+yaml_path)
     """Helper function to load and validate configuration"""
     config = InstallConfig.from_yaml(yaml_path)
     errors = config.validate()
@@ -363,18 +362,33 @@ def create_windows_conda(c: InstallConfig):
     writer.write_string(install_script, "install/install.bat",create_dirs=True)
     writer.write_string(get_downloads(c), "install/download.py",create_dirs=True)
 
+def create_windows_pip_env(c: InstallConfig):
+    # TODO
+    pass
+
+def create_linux_conda(c: InstallConfig):
+    # TODO
+    pass
+
+def create_linux_pip_env(c: InstallConfig):
+    # TODO
+    pass
+
 if __name__ == "__main__":
 
     # Arguments start from index 1 (index 0 is the script name)
     arguments = sys.argv[1:]
 
     if len(arguments) != 1:
-        print("wrong arguments, should get only 1 argument, the path to yaml config file.")
+        logger.error("wrong arguments, should get only 1 argument, the path to yaml config file.")
         exit(137)
 
     config = load_config(arguments[0])
 
     if config.platform == "windows":
-        create_windows_conda(config)
+        if config.install_type == "conda":
+            create_windows_conda(config)
+        else:
+            raise ValueError("Unsupported install type for windows: " + config.install_type)
     else:
         raise ValueError("Unsupported platform: " + config.platform)
